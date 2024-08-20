@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, json } from "react-router-dom";
 import api from "../../services/api";
 import './filme-info.css'
 
@@ -35,6 +35,24 @@ function Filme() {
     
     }, [navigate, id])
 
+    function salvarFilme() {
+        const minhaLista = localStorage.getItem('@primeflix');
+
+        let filmesSalvos = JSON.parse(minhaLista) || [];
+
+        const hasFilme = filmesSalvos.some((filmesSalvos) => filmesSalvos.id === filme.id)
+
+        if(hasFilme) {
+            alert('Esse filme já esta na lista')
+            return;
+        }
+
+        filmesSalvos.push(filme);
+        localStorage.setItem('@primeflix', JSON.stringify(filmesSalvos));
+        alert('Filme salvo com sucesso!')
+        
+    }
+
     if(loading) {
         return (
             <div className="filme-info"> 
@@ -54,7 +72,7 @@ function Filme() {
             <strong>Avaliação: {filme.vote_average} / 10</strong>
 
             <div className="area-buttons">
-                <button>Salvar</button>
+                <button onClick={salvarFilme}>Salvar</button>
                 <button>
                     <a target="_blank" href={`https://youtube.com/results?search_query=${filme.title} trailer`} rel="noreferrer">Trailer</a>
                 </button>
