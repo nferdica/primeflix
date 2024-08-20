@@ -1,3 +1,7 @@
+.container {
+    margin-top: 40px;
+}
+
 .lista-filmes {
     max-width: 800px;
     margin: 14px auto;
@@ -15,6 +19,7 @@
     background-color: #FFF;
     padding: 14px;
     border-radius: 4px;
+    margin-bottom: 50px;
 }
 
 .lista-filmes strong {
@@ -40,9 +45,14 @@
     justify-content: center;
     padding: 10px 0;
     font-size: 24px;
-    background-color: #116FEB;
     text-decoration: none;
+    background-color: #116FEB;
     color: #FFF;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+}
+
+.lista-filmes a:hover {
+    background-color: #CCC;
+    color: #000;
 }
